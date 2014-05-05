@@ -3,8 +3,9 @@
 
 
 import sys
+from imp import reload
 reload(sys)
-sys.setdefaultencoding('utf-8')
+#sys.setdefaultencoding('utf-8')
 from  setuptools import   find_packages
 from distutils.core import Extension, setup
 setup(
@@ -94,7 +95,7 @@ If you have interesting , have a look a the original edition
 
 from mmseg import seg_txt
 for i in seg_txt("最主要的更动是：张无忌最后没有选定自己的配偶。"):
-    print i
+    print(i)
 
 -------------------------------
 配合xapian做索引
@@ -161,11 +162,11 @@ if __name__ == "__main__":
     matches = search( "治安")
 
     # Display the results.
-    print "%i results found." % matches.get_matches_estimated()
-    print "Results 1-%i:" % matches.size()
+    print("%i results found." % matches.get_matches_estimated())
+    print("Results 1-%i:" % matches.size())
 
     for m in matches:
-        print "%i: %i%% docid=%i [%s]" % (m.rank + 1, m.percent, m.docid, m.document.get_data())
+        print("%i: %i%% docid=%i [%s]" % (m.rank + 1, m.percent, m.docid, m.document.get_data()))
 -------------------------------
 张沈鹏(zsp007@gmail.com) 修改版 rmmseg-cpp
 

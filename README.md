@@ -1,8 +1,10 @@
-张沈鹏(zsp007@gmail.com) 修改版 rmmseg-cpp
 
-github
+# mmseg ONLY work for python 3.x
 
-    https://github.com/42qu/mmseg
+**Tested on python 3.3**
+
+This is a modified version of [old mmseg python package](https://github.com/42qu/mmseg), if you want the old version
+(which support 2.x), try [张沈鹏(zsp007@gmail.com) 修改版 rmmseg-cpp](https://github.com/42qu/mmseg)
 
 
 安装:
@@ -12,7 +14,7 @@ python setup.py install
 import mmseg
 
 for i in mmseg.seg_txt("我爱天安门"):
-    print i
+    print(i)
 
 输出:
 

@@ -20,7 +20,7 @@ def seg_txt2(txt):
                 if u"一" <= i <= u"龥" and i not in STOPWORD:
                     yield i
             else:
-                yield i 
+                yield i
 
 def seg_txt_2_dict(txt):
     result = defaultdict(int)
@@ -135,4 +135,4 @@ def seg_txt_search(txt):
 
 if __name__ == "__main__":
     for i in word_len2("是：张无忌"):
-        print i
+        print(i)

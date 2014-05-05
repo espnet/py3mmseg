@@ -1,6 +1,6 @@
 #coding:utf-8
 
-import _mmseg as mmseg
+import mmseg._mmseg as mmseg
 mmseg.dict_load_defaults()
 def seg_txt(text):
     if type(text) is str:
@@ -18,4 +18,5 @@ if __name__ == "__main__":
     from collections import defaultdict
     word_count = defaultdict(int)
     for word in seg_txt(text):
-        print word,
+        str_word = str(word,'utf8')
+        print(str_word)

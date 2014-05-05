@@ -3,6 +3,7 @@
 import sys
 from ctypes import *
 from os.path import join, dirname, abspath, exists
+import mmseg
 
 if sys.platform == 'win32':
     ext = 'dll'
@@ -19,12 +20,12 @@ mmseg_lib_path = abspath(
 if not exists(mmseg_lib_path):
     mmseg_lib_path = abspath(
         join(
-        dirname(__file__),
+        dirname(mmseg.__file__),
         'mmseg_cpp',
         'mmseg.%s' % ext
         )
     )
-        
+
 mmseg = cdll.LoadLibrary(mmseg_lib_path)
 
 ########################################
@@ -92,27 +93,27 @@ mmseg.mmseg_next_token.restype  = Token
 # Python API
 ########################################
 def dict_load_chars(path):
-    res = mmseg.mmseg_load_chars(path)
+    res = mmseg.mmseg_load_chars(bytes(path,'ascii'))
     if res == 0:
         return False
     return True
 
 def dict_load_words(path):
-    res = mmseg.mmseg_load_words(path)
+    res = mmseg.mmseg_load_words(bytes(path,'ascii'))
     if res == 0:
         return False
     return True
 
 def dict_load_defaults():
-    mmseg.mmseg_load_chars(join(dirname(__file__), 'data', 'chars.dic'))
-    mmseg.mmseg_load_words(join(dirname(__file__), 'data', 'words.dic'))
+    mmseg.mmseg_load_chars(bytes(join(dirname(__file__), 'data', 'chars.dic'), 'ascii'))
+    mmseg.mmseg_load_words(bytes(join(dirname(__file__), 'data', 'words.dic'), 'ascii'))
 
 class Algorithm(object):
     def __init__(self, text):
         """\
         Create an Algorithm instance to segment text.
         """
-        self.algor = mmseg.mmseg_algor_create(text, len(text))
+        self.algor = mmseg.mmseg_algor_create(bytes(text,'utf8'), len(text))
         self.destroied = False
 
     def __iter__(self):
@@ -126,14 +127,14 @@ class Algorithm(object):
             if tk is None:
                 raise StopIteration
             yield tk
-    
+
     def next_token(self):
         """\
         Get next token. When no token available, return None.
         """
         if self.destroied:
             return None
-        
+
         tk = mmseg.mmseg_next_token(self.algor)
         if tk.length == 0:
             # no token available, the algorithm object
@@ -144,7 +145,7 @@ class Algorithm(object):
             return tk
 
     def _destroy(self):
-        
+
         if not self.destroied:
             mmseg.mmseg_algor_destroy(self.algor)
             self.destroied = True

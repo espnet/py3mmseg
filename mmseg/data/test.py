@@ -26,9 +26,9 @@ for i in word_set:
                 if not len(i)<= 12:
                     do_print = True
     #    if len(i)>= 21:
-    #        print i
+    #        print (i)
     if do_print:
         i_len = len(i.decode("utf-8"))
         if not i_len>9:
-            print i_len, i
+            print (i_len, i)
 
