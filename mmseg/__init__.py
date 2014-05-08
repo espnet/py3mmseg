@@ -8,7 +8,6 @@ def seg_txt(text):
         for tok in algor:
             yield tok.text
     else:
-        print("oops!")
         yield ""
 
 
