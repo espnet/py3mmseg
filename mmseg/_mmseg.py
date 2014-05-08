@@ -93,27 +93,27 @@ mmseg.mmseg_next_token.restype  = Token
 # Python API
 ########################################
 def dict_load_chars(path):
-    res = mmseg.mmseg_load_chars(bytes(path,'ascii'))
+    res = mmseg.mmseg_load_chars(bytes(path, 'utf8'))
     if res == 0:
         return False
     return True
 
 def dict_load_words(path):
-    res = mmseg.mmseg_load_words(bytes(path,'ascii'))
+    res = mmseg.mmseg_load_words(bytes(path, 'utf8'))
     if res == 0:
         return False
     return True
 
 def dict_load_defaults():
-    mmseg.mmseg_load_chars(bytes(join(dirname(__file__), 'data', 'chars.dic'), 'ascii'))
-    mmseg.mmseg_load_words(bytes(join(dirname(__file__), 'data', 'words.dic'), 'ascii'))
+    mmseg.mmseg_load_chars(bytes(join(dirname(__file__), 'data', 'chars.dic'), 'utf8'))
+    mmseg.mmseg_load_words(bytes(join(dirname(__file__), 'data', 'words.dic'), 'utf8'))
 
 class Algorithm(object):
     def __init__(self, text):
         """\
         Create an Algorithm instance to segment text.
         """
-        self.algor = mmseg.mmseg_algor_create(bytes(text,'utf8'), len(text))
+        self.algor = mmseg.mmseg_algor_create(text.encode('utf8'), len(text.encode('utf8')))
         self.destroied = False
 
     def __iter__(self):

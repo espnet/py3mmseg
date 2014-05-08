@@ -16,7 +16,7 @@ with open(join(PREFIX,'words.dic')) as words:
         word = line.strip().split(" ",1)[1].decode("utf-8")
         if len(word) > 2:
             WORD_LIST.append(word)
-            for i in xrange(2,len(word)+1):
+            for i in range(2,len(word)+1):
                 WORD2[word[i-2:i]].add(word)
         else:
             WORD2[word].add(word)
@@ -24,7 +24,7 @@ with open(join(PREFIX,'words.dic')) as words:
 WORD2WORD = defaultdict(set)
 
 for word in WORD_LIST:
-    for i in xrange(2,len(word)+1):
+    for i in range(2,len(word)+1):
         t = word[i-2:i]
         for j in WORD2[t]:
             if j in word and j!=word:
