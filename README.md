@@ -6,16 +6,20 @@
 This is a modified version of [old mmseg python package](https://github.com/42qu/mmseg), if you want the old version
 (which support 2.x), try [张沈鹏(zsp007@gmail.com) 修改版 rmmseg-cpp](https://github.com/42qu/mmseg)
 
+**Due to unknown problem(probably the encoding problem), you need to pass bytes instead of str object to mmseg.**
 
 安装:
+```
 python setup.py install
+```
 
 用法如:
+```
 import mmseg
 
-for i in mmseg.seg_txt("我爱天安门"):
-    print(i)
-
+for i in mmseg.seg_txt("我爱天安门".encode()):
+    print(i.decode())
+```
 输出:
 
 我爱

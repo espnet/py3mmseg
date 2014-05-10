@@ -113,7 +113,7 @@ class Algorithm(object):
         """\
         Create an Algorithm instance to segment text.
         """
-        self.algor = mmseg.mmseg_algor_create(text.encode('utf8'), len(text.encode('utf8')))
+        self.algor = mmseg.mmseg_algor_create(text, len(text))
         self.destroied = False
 
     def __iter__(self):
