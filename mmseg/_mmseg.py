@@ -3,18 +3,21 @@
 import sys
 from ctypes import *
 from os.path import join, dirname, abspath, exists
+import sysconfig
 import mmseg
 
-if sys.platform == 'win32':
-    ext = 'dll'
-else:
-    ext = 'so'
+ext = sysconfig.get_config_var('EXT_SUFFIX')
+if ext is None:
+    if sys.platform == 'win32':
+        ext = '.dll'
+    else:
+        ext = '.so'
 
 mmseg_lib_path = abspath(
     join(
     dirname(__file__),
     '..',
-    'mmseg.%s' % ext
+    'mmseg%s' % ext
     )
 )
 if not exists(mmseg_lib_path):
@@ -22,7 +25,7 @@ if not exists(mmseg_lib_path):
         join(
         dirname(mmseg.__file__),
         'mmseg_cpp',
-        'mmseg.%s' % ext
+        'mmseg%s' % ext
         )
     )
 
