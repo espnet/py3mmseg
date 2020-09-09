@@ -128,7 +128,7 @@ class Algorithm(object):
         while True:
             tk = self.next_token()
             if tk is None:
-                raise StopIteration
+                break
             yield tk
 
     def next_token(self):
