@@ -1,11 +1,5 @@
 #coding:utf-8
 
-
-
-import sys
-from imp import reload
-reload(sys)
-#sys.setdefaultencoding('utf-8')
 from  setuptools import   find_packages
 from distutils.core import Extension, setup
 setup(
