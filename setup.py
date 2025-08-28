@@ -5,7 +5,7 @@ from distutils.core import Extension, setup
 setup(
     name='mmseg',
     description='MMseg中文分词 Chinese Segment On MMSeg Algorithm',
-    version='1.3.0',
+    version='1.4.0',
     author_email='zsp007@gmail.com',
     packages=find_packages(),
 package_data={
